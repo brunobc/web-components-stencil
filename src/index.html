@@ -32,6 +32,15 @@
     <p>Let's test this new <uc-tooltip text="We built this before, now it is better!">Tooltip!</uc-tooltip></p>
     <uc-stock-price stock-symbol="AAPL"></uc-stock-price>
     <uc-stock-finder></uc-stock-finder>
+
+    <script>
+      const stockFinderEl = document.querySelector('uc-stock-finder');
+      stockFinderEl.addEventListener('ucSymbolSelected', event => {
+        console.log(event);
+      });
+    </script>
+
+
     <uc-side-drawer title="Main Menu">
       <nav class="side-nav">
         <ul>
