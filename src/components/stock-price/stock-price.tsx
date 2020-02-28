@@ -94,7 +94,7 @@ export class StockPrice {
         return res.json();
       })
       .then(parsedRes => {
-        if (!parsedRes['Global Quote']['05. price']) {
+        if (!parsedRes['Global Quote'] || parsedRes['Error Message']) {
           throw new Error('Invalid symbol');
         }
         this.error = null;
@@ -102,7 +102,12 @@ export class StockPrice {
       })
       .catch(err => {
         this.error = err.message;
+        this.fetchedPrice = null; 
       });
+  }
+
+  hostData() {
+    return { class: this.error ? 'error' : '' }
   }
 
   render() {
